@@ -10,17 +10,17 @@ Assignment 1: Discovering VMX Features
               					--destination=assignment-283.yml \
               					--zone=us-west1-b
               					(VM name: assignment-283)
-    - Edited the YAML file but adding the following:
+        - Edited the YAML file but adding the following:
     			advancedMachineFeatures:
       				enableNestedVirtualization: true
-    - Updated the VM with the new properties by running the following:
-   	 	command: gcloud compute instances update-from-file assignment-283 \
-              				--source=/home/for-283/assignment-283.yml \
-              				--most-disruptive-allowed-action=RESTART \
-              				--zone=us-west1-b
-              				(VM name: assignment-283 || YAML file path: /home/for-283/assignment-283.yml)
+        - Updated the VM with the new properties by running the following:
+   	 		command: gcloud compute instances update-from-file assignment-283 \
+              					--source=/home/for-283/assignment-283.yml \
+              					--most-disruptive-allowed-action=RESTART \
+              					--zone=us-west1-b
+              					(VM name: assignment-283 || YAML file path: /home/for-283/assignment-283.yml)
     - To verify if the nested virtualization is enabled we can check the REST response for the machine on GCP UI.
-
+    
 - Clone the git directory
 - Run these commands to setup:
     - sudo apt install gcc make
