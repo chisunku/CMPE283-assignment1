@@ -16,6 +16,7 @@
 #define IA32_VMX_PROCBASED_CTLS2 	0x48B
 #define IA32_VMX_EXIT_CTLS 	0x483
 #define IA32_VMX_ENTRY_CTLS  0x484
+#define IA32_VMX_PROCBASED_CTLS3 0x492
 
 /*
  * struct caapability_info
@@ -138,6 +139,14 @@ struct capability_info vmx_entry[13] =
 	{ 22, "Load PKRS" }
 };
 
+struct capability_info procbased_ctls3[4] =
+{
+	{ 0, "LOADIWKEY exiting" },
+        { 1, "Enable HLAT" },
+        { 2, "EPT paging-write control" },
+        { 3, "Guest-paging verification" }
+};
+
 /*
  * report_capability
  *
@@ -191,10 +200,19 @@ detect_vmx_features(void)
 	report_capability(procbased, 22, lo, hi);
 
 	/* Procbased controls secondry */
-	rdmsr(IA32_VMX_PROCBASED_CTLS2, lo, hi);
-	pr_info("Procbased secondary Controls MSR: 0x%llx\n",
-		(uint64_t)(lo | (uint64_t)hi << 32));
-	report_capability(procbased_ctls2, 28, lo, hi);
+	if((hi >> 31) && 1){
+		rdmsr(IA32_VMX_PROCBASED_CTLS2, lo, hi);
+		pr_info("Procbased secondary Controls MSR: 0x%llx\n",
+			(uint64_t)(lo | (uint64_t)hi << 32));
+		report_capability(procbased_ctls2, 28, lo, hi);
+	}
+	/* Procbased controls tertiary*/
+	if((hi >> 17) && 1){
+                rdmsr(IA32_VMX_PROCBASED_CTLS3, lo, hi);
+                pr_info("Procbased tertiary Controls MSR: 0x%llx\n",
+                        (uint64_t)(lo | (uint64_t)hi << 32));
+                report_capability(procbased_ctls3, 4, lo, hi);
+	}
 
 	/* VMX EXIT controls */
 	rdmsr(IA32_VMX_EXIT_CTLS, lo, hi);
@@ -220,7 +238,6 @@ detect_vmx_features(void)
 int
 init_module(void)
 {
-	printk("here!!");
 	printk(KERN_INFO "CMPE 283 Assignment 1 Module Start\n");
 
 	detect_vmx_features();
