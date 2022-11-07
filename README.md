@@ -1,4 +1,4 @@
-#Assignment 1: Discovering VMX Features
+<h1>Assignment 1: Discovering VMX Features</h1>
 
 - Work done by Chinmayi Sunku:
     - Setup GCP instance. 
