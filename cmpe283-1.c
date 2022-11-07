@@ -220,7 +220,7 @@ detect_vmx_features(void)
 		(uint64_t)(lo | (uint64_t)hi << 32));
 	report_capability(vmx_exit, 17, lo, hi);
 
-	/* VMX EXIT controls */
+	/* VMX ENTRY controls */
 	rdmsr(IA32_VMX_ENTRY_CTLS, lo, hi);
 	pr_info("VMX entry MSR: 0x%llx\n",
 		(uint64_t)(lo | (uint64_t)hi << 32));
