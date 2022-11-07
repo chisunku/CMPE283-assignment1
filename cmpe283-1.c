@@ -185,7 +185,7 @@ void report_capability(struct capability_info *cap, uint8_t len, uint32_t lo, ui
 void
 detect_vmx_features(void)
 {
-	uint32_t lo, hi;
+	uint32_t lo, hi, procbased_hi;
 
 	/* Pinbased controls */
 	rdmsr(IA32_VMX_PINBASED_CTLS, lo, hi);
@@ -198,16 +198,20 @@ detect_vmx_features(void)
 	pr_info("Procbased Controls MSR: 0x%llx\n",
 		(uint64_t)(lo | (uint64_t)hi << 32));
 	report_capability(procbased, 22, lo, hi);
+	procbased_hi = hi;
+	//printk("pr_hi = %d %d",procbased_hi,hi);
 
 	/* Procbased controls secondry */
-	if((hi >> 31) && 1){
+	if((procbased_hi & (1 << 31))){
 		rdmsr(IA32_VMX_PROCBASED_CTLS2, lo, hi);
 		pr_info("Procbased secondary Controls MSR: 0x%llx\n",
 			(uint64_t)(lo | (uint64_t)hi << 32));
 		report_capability(procbased_ctls2, 28, lo, hi);
 	}
+
+	//printk("pr_hi = %d %d",procbased_hi,hi);
 	/* Procbased controls tertiary*/
-	if((hi >> 17) && 1){
+	if((procbased_hi & (1 << 17))){
                 rdmsr(IA32_VMX_PROCBASED_CTLS3, lo, hi);
                 pr_info("Procbased tertiary Controls MSR: 0x%llx\n",
                         (uint64_t)(lo | (uint64_t)hi << 32));
@@ -220,7 +224,7 @@ detect_vmx_features(void)
 		(uint64_t)(lo | (uint64_t)hi << 32));
 	report_capability(vmx_exit, 17, lo, hi);
 
-	/* VMX ENTRY controls */
+	/* VMX EXIT controls */
 	rdmsr(IA32_VMX_ENTRY_CTLS, lo, hi);
 	pr_info("VMX entry MSR: 0x%llx\n",
 		(uint64_t)(lo | (uint64_t)hi << 32));
