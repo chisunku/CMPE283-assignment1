@@ -12,7 +12,7 @@
 - Work done by Ujwala:
     - 
 
-
+<h3> SETUP </h3>
 1) GCP VM setup:
     - Create an ubuntu instance on GCP UI.
     - Steps to enable virtualization on the machine:
