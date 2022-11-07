@@ -9,7 +9,13 @@
     - Generated the output file but using dmesg > output
     - Commit the file .c to the repository along with the output file
     
-- Work done by Ujwala:
+- Work done by Ujwala Mote:
+    - Configured VM on GCP.
+    - Enabled nested virtualization
+    - configured MSR to support entry and exit controls by adding it into cmpe283-1.c file. Referred SDM for the same
+    - Added the cmpe283-1.c file and the make file into the kernel.
+    - Printed the buffer output.
+    - Generated the output file but using dmesg > output
 
 1) GCP VM setup:
     - Create an ubuntu instance on GCP UI.
