@@ -8,9 +8,8 @@
     - Printed the buffer output.
     - Generated the output file but using dmesg > output
     - Commit the file .c to the repository along with the output file
-
+    
 - Work done by Ujwala:
-    - 
 
 1) GCP VM setup:
     - Create an ubuntu instance on GCP UI.
