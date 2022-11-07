@@ -12,15 +12,14 @@
 - Work done by Ujwala:
     - 
 
-<h3> SETUP </h3>
 1) GCP VM setup:
-    - Create an ubuntu instance on GCP UI.</br>
-    - Steps to enable virtualization on the machine:</br>
-        - exported the properties of the VM into a YAML file</br>
-    	    command: gcloud compute instances export assignment-283 \</br>
-                     --destination=assignment-283.yml \</br>
-              		 --zone=us-west1-b</br>
-            (VM name: assignment-283)</br>
+    - Create an ubuntu instance on GCP UI.
+    - Steps to enable virtualization on the machine:
+        - exported the properties of the VM into a YAML file
+    	    command: gcloud compute instances export assignment-283 \
+                     --destination=assignment-283.yml \
+              		 --zone=us-west1-b
+            (VM name: assignment-283)
         - Edited the YAML file by adding the following:
     		Add these lines: 
                 "advancedMachineFeatures:
