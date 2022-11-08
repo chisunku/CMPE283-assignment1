@@ -3,7 +3,7 @@
 - Work done by Chinmayi Sunku:
     - Setup GCP instance. 
     - Enabled nested virtualization 
-    - Modified the cmpe283-1.c file by adding information for primary proc-based and secondary proc-based MSRs. Referred the SDM to get the information about the controls related to the MSRs.
+    - Modified the cmpe283-1.c file by adding information for primary proc-based, secondary proc-based and tertiary proc-based MSRs. Referred the SDM to get the information about the controls related to the MSRs.
     - Added the cmpe283-1.c file and the make file into the kernel.
     - Printed the buffer output.
     - Generated the output file but using dmesg > output
@@ -12,7 +12,7 @@
 - Work done by Ujwala Mote:
     - Configured VM on GCP.
     - Enabled nested virtualization
-    - configured MSR to support entry and exit controls by adding it into cmpe283-1.c file. Referred SDM for the same
+    - configured MSR to support entry, exit and tertiary proc-based controls by adding it into cmpe283-1.c file. Referred SDM for the same
     - Added the cmpe283-1.c file and the make file into the kernel.
     - Printed the buffer output.
     - Generated the output file but using dmesg > output
